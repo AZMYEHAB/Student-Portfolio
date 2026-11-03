@@ -1,0 +1,454 @@
+/* ==========================================================
+   Azmy Ehab - Portfolio styles
+   Loaded after Bootstrap 5 so these rules can override it.
+   Sections:
+   1. Design tokens
+   2. Base
+   3. Navigation
+   4. Hero
+   5. Shared section styles
+   6. About
+   7. Skills
+   8. Projects
+   9. Contact
+   10. Footer
+   11. Accessibility and motion
+   ========================================================== */
+
+/* ---------- 1. Design tokens ---------- */
+:root {
+  --bg: #0c1322;            /* deep navy, echoes the navy tie in the portrait */
+  --bg-alt: #101a2e;
+  --surface: #162137;
+  --border: #25324d;
+  --text: #e9edf5;
+  --muted: #a3afc5;
+  --accent: #e5b567;        /* warm amber */
+  --accent-strong: #f0c680;
+  --on-accent: #0c1322;
+  --success: #7fd1a8;
+  --info: #8db4ff;
+
+  --font-body: "DM Sans", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Fraunces", Georgia, "Times New Roman", serif;
+
+  --radius: 14px;
+  --nav-height: 64px;
+}
+
+/* ---------- 2. Base ---------- */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+section[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-strong);
+}
+
+p {
+  color: var(--muted);
+}
+
+/* ---------- 3. Navigation ---------- */
+.site-nav {
+  min-height: var(--nav-height);
+  background-color: rgba(12, 19, 34, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-nav .navbar-brand {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.site-nav .nav-link {
+  color: var(--muted);
+  font-weight: 500;
+  padding: 0.5rem 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.site-nav .nav-link:hover,
+.site-nav .nav-link:focus {
+  color: var(--accent);
+}
+
+@media (max-width: 767.98px) {
+  .site-nav .navbar-collapse {
+    padding-bottom: 0.75rem;
+  }
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  padding: calc(var(--nav-height) + 4rem) 0 5rem;
+  background:
+    radial-gradient(ellipse at 85% 20%, rgba(229, 181, 103, 0.10), transparent 55%),
+    var(--bg);
+}
+
+.hero-role {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.hero-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(3rem, 9vw, 5.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.hero-intro {
+  font-size: 1.15rem;
+  max-width: 34rem;
+  margin-bottom: 2rem;
+}
+
+/* The one entrance moment on the page */
+.hero-text,
+.portrait {
+  animation: hero-in 0.8s ease both;
+}
+
+.portrait {
+  animation-delay: 0.12s;
+}
+
+@keyframes hero-in {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* Portrait: arch-shaped frame with an offset accent outline */
+.portrait {
+  position: relative;
+  width: min(calc(100% - 14px), 340px);
+  margin: 0 14px 14px 0; /* leaves room for the offset outline so nothing overflows */
+}
+
+.portrait::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translate(14px, 14px);
+  border: 2px solid var(--accent);
+  border-radius: 170px 170px 24px 24px;
+  z-index: 0;
+}
+
+.portrait img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: 170px 170px 24px 24px;
+  background-color: #fff;
+}
+
+/* Buttons */
+.btn-accent {
+  background-color: var(--accent);
+  border-color: var(--accent);
+  color: var(--on-accent);
+  font-weight: 700;
+}
+
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: var(--on-accent);
+}
+
+.btn-outline-light {
+  border-color: var(--border);
+  color: var(--text);
+}
+
+.btn-outline-light:hover,
+.btn-outline-light:focus {
+  background-color: var(--surface);
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---------- 5. Shared section styles ---------- */
+.section {
+  padding: 5rem 0;
+}
+
+.section-alt {
+  background-color: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  letter-spacing: -0.01em;
+  margin-bottom: 1rem;
+}
+
+.section-intro {
+  max-width: 38rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ---------- 6. About ---------- */
+#about .section-title {
+  margin-bottom: 2rem;
+}
+
+.lead-text {
+  color: var(--text);
+  font-size: 1.2rem;
+}
+
+.cv-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+
+.cv-title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  margin-bottom: 1.25rem;
+}
+
+.cv-list {
+  margin: 0;
+}
+
+.cv-list > div + div {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.cv-list dt {
+  color: var(--accent);
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.cv-list dd {
+  margin: 0;
+  color: var(--text);
+}
+
+/* ---------- 7. Skills ---------- */
+.skill-group-title {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 1.25rem;
+}
+
+.skill-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.skill-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.skill-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* ---------- 8. Projects ---------- */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  height: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  line-height: 1.25;
+  margin: 1rem 0 0.5rem;
+}
+
+.project-text {
+  flex-grow: 1;
+  margin-bottom: 1.25rem;
+}
+
+.project-link {
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.project-note {
+  color: var(--muted);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+/* Status badges: each status has its own color so they are easy to tell apart */
+.status {
+  display: inline-block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.2rem 0.75rem;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+
+.status-published { color: var(--success); }
+.status-dev       { color: var(--accent); }
+.status-local     { color: var(--info); }
+
+/* ---------- 9. Contact ---------- */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--accent);
+}
+
+.contact-label {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.contact-value {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- 10. Footer ---------- */
+.site-footer {
+  padding: 2rem 0;
+  border-top: 1px solid var(--border);
+  font-size: 0.95rem;
+}
+
+.site-footer p {
+  color: var(--muted);
+}
+
+/* ---------- 11. Accessibility and motion ---------- */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 2000;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--accent-strong);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-text,
+  .portrait {
+    animation: none;
+  }
+
+  .skill-card,
+  .project-card,
+  .contact-card {
+    transition: none;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .section {
+    padding: 3.5rem 0;
+  }
+
+  .hero {
+    padding-bottom: 3.5rem;
+  }
+}
